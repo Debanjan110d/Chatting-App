@@ -7,7 +7,14 @@ import { registerRoutes } from '../../../server/routes';
 const app = express();
 
 // Enable CORS for all origins
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.CLIENT_ORIGIN,      // only allow requests from specified frontend
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,                     // allow cookies/auth headers
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
