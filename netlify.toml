@@ -1,9 +1,9 @@
 # Netlify configuration for client build and API/WebSocket proxy
 [build]
   # Root of the frontend app
-  base = "client"
+  base = "."
   # Directory where Vite outputs the production build
-  publish = "dist"
+  publish = "dist/public"
   # Command to install deps and build
   command = "npm ci && npm run build"
 
