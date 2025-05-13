@@ -10,14 +10,14 @@
 [[redirects]]
   # Proxy all API calls to your backend (replace <YOUR_BACKEND_URL>)
   from = "/api/*"
-  to = "https://talkativedeb.netlify.app/api/:splat"
+  to = "https://<YOUR_BACKEND_URL>/:splat"
   status = 200
   force = true
 
 [[redirects]]
   # Proxy WebSocket connections
   from = "/ws"
-  to = "wss://talkativedeb.netlify.app/ws"
+  to = "wss://<YOUR_BACKEND_URL>/ws"
   status = 200
   force = true
 
