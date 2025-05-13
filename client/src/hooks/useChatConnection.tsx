@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { WS_URL } from '@/lib/config';
 import { User } from '@/lib/types';
 import { useWebRTC } from './useWebRTC';
 
@@ -20,8 +21,7 @@ export function useChatConnection(user: User | null) {
     
     setConnectionStatus('connecting');
     
-    const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
-    const wsUrl = `${protocol}//${window.location.host}/ws`;
+    const wsUrl = WS_URL;
     
     console.log('Connecting to WebSocket:', wsUrl);
     

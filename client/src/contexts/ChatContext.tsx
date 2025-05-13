@@ -4,6 +4,7 @@ import { useUser } from "./UserContext";
 import { useChatConnection } from "@/hooks/useChatConnection";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { API_BASE } from "@/lib/config";
 
 interface ChatContextType {
   friends: Friend[];
@@ -80,7 +81,7 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
     if (connectionStatus !== 'connected' || !user) return;
     (async () => {
       try {
-        const res = await fetch('/api/messages/pending', {
+        const res = await fetch(API_BASE + '/api/messages/pending', {
           headers: { 'user-id': user.id }
         });
         if (res.ok) {
@@ -104,7 +105,7 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
     if (!user) return;
     setIsLoadingFriends(true);
     try {
-      const res = await fetch('/api/friends', {
+      const res = await fetch(API_BASE + '/api/friends', {
         headers: { 'user-id': user.id.toString() }
       });
       if (res.ok) {
@@ -140,7 +141,7 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
       
       setIsLoadingMessages(true);
       try {
-        const res = await fetch(`/api/messages/${selectedFriend.id}`, {
+        const res = await fetch(`${API_BASE}/api/messages/${selectedFriend.id}`, {
           headers: {
             'user-id': user.id.toString()
           }
@@ -173,7 +174,7 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
     if (!user || !selectedFriend) return;
     
     try {
-      const res = await fetch('/api/messages', {
+      const res = await fetch(API_BASE + '/api/messages', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

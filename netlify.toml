@@ -1,0 +1,22 @@
+# Netlify configuration for client build and API/WebSocket proxy
+[build]
+  # Root of the frontend app
+  base = "client"
+  # Directory where Vite outputs the production build
+  publish = "dist"
+  # Command to install deps and build
+  command = "npm ci && npm run build"
+
+[[redirects]]
+  # Proxy all API calls to your backend (replace <YOUR_BACKEND_URL>)
+  from = "/api/*"
+  to = "https://talkativedeb.netlify.app/api/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  # Proxy WebSocket connections
+  from = "/ws"
+  to = "wss://talkativedeb.netlify.app/ws"
+  status = 200
+  force = true
